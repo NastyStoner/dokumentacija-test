@@ -1,0 +1,215 @@
+:root{
+  --jtd-link-color:#ef4444;
+  --jtd-link-hover-color:#f87171;
+  --jtd-btn-primary-color:#ef4444;
+  --jtd-code-text-color:#e5e7eb;
+  --jtd-card-bg:#111217;
+  --jtd-card-border:#2d2d2f;
+  --jtd-card-shadow:0 8px 24px rgba(0,0,0,.35);
+}
+
+body{
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(239,68,68,.08), transparent 45%),
+    linear-gradient(#05060a,#0a0b10);
+}
+
+/* lijevi aktivni link naglasak */
+.site-nav .nav-list .nav-list-item .nav-list-link.active{
+  border-left:3px solid #ef4444;
+}
+
+/* tipke */
+.btn{
+  border-radius:10px;
+}
+
+/* ===== HERO KARTICA ===== */
+.hero{
+  margin:0 0 1.75rem 0;
+  padding:24px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.06);
+  background:linear-gradient(145deg,rgba(16,20,34,.9),rgba(10,13,22,.9));
+  box-shadow:0 24px 64px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.04);
+  display:grid;
+  grid-template-columns:96px 1fr;
+  gap:18px;
+  align-items:center;
+}
+.hero img{
+  width:96px;
+  height:96px;
+  object-fit:contain;
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.45));
+}
+.hero h1{
+  margin:0 0 .35rem 0;
+}
+.hero p{
+  margin:0;
+  color:#cbd5e1;
+}
+.hero-copy{
+  display:flex;
+  flex-direction:column;
+  gap:.35rem;
+}
+.hero-kicker{
+  font-size:.8rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#f87171;
+}
+.hero-actions{
+  margin-top:.35rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+}
+
+/* small screens — hero u kolonu */
+@media (max-width: 640px){
+  .hero{
+    grid-template-columns:1fr;
+    text-align:left;
+  }
+  .hero img{
+    width:80px;
+    height:80px;
+  }
+}
+
+/* ===== SCRIPTS GRID ===== */
+
+.section-intro{
+  margin-top:.15rem;
+  color:#9ca3af;
+  font-size:.92rem;
+}
+
+.script-grid{
+  margin:1rem 0 0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:0.85rem;
+}
+
+.script-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:.75rem .9rem;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.05);
+  background:rgba(11,12,18,.96);
+  box-shadow:0 16px 40px rgba(0,0,0,.35);
+  text-decoration:none;
+  transition:border-color .18s ease, box-shadow .18s ease, transform .08s ease, background .18s ease;
+}
+.script-card:hover{
+  border-color:#ef4444;
+  background:linear-gradient(145deg,rgba(15,18,30,.98),rgba(10,12,20,.98));
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
+  transform:translateY(-1px);
+}
+.script-name{
+  font-weight:600;
+  color:#f9fafb;
+}
+.script-tagline{
+  margin-top:.25rem;
+  font-size:.86rem;
+  color:#9ca3af;
+}
+
+/* ===== API kartice (details/summary) ===== */
+.api-card{
+  border:1px solid var(--jtd-card-border);
+  border-radius:12px;
+  background:var(--jtd-card-bg);
+  padding:.5rem .75rem;
+  margin:1rem 0;
+  box-shadow:var(--jtd-card-shadow);
+  transition:box-shadow .2s ease, border-color .2s ease, transform .08s ease;
+}
+.api-card:hover{
+  border-color:#3a3a42;
+}
+.api-card:active{
+  transform:translateY(1px);
+}
+
+.api-card > summary{
+  list-style:none;
+  cursor:pointer;
+  font-weight:700;
+  font-size:1.02rem;
+  padding:.25rem .25rem .25rem 1.6rem;
+  position:relative;
+}
+.api-card > summary::-webkit-details-marker{
+  display:none;
+}
+
+/* chevron */
+.api-card > summary::before{
+  content:"▸";
+  position:absolute;
+  left:.25rem;
+  top:.15rem;
+  font-size:1.1rem;
+  opacity:.8;
+  transition:transform .15s ease;
+}
+.api-card[open] > summary::before{
+  transform:rotate(90deg);
+}
+
+/* unutarnji razmak */
+.api-card > *:not(summary){
+  margin-top:.5rem;
+}
+
+/* tekst ispod koda */
+.api-card p{
+  margin:.25rem 0 0;
+  color:#c9cdd3;
+}
+
+/* code block poliranje */
+.highlight,
+pre.highlight{
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.06);
+  background:linear-gradient(180deg,rgba(18,22,34,.95),rgba(12,15,24,.95));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+}
+code,
+pre code{
+  color:var(--jtd-code-text-color);
+}
+
+/* inline code */
+code{
+  border-radius:6px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  padding:.05rem .35rem;
+}
+
+/* fokus na linkove i tipke */
+a:focus,
+.btn:focus,
+button:focus,
+[role="button"]:focus{
+  outline:2px solid rgba(239,68,68,.65);
+  outline-offset:2px;
+  border-radius:8px;
+}
+
+/* sitni razmaci sekcija */
+.main-content h2,
+.main-content h3{
+  scroll-margin-top:90px;
+}

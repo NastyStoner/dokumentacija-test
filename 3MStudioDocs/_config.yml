@@ -1,0 +1,29 @@
+title: 3M Studio Docs
+description: Documentation for 3M Studio scripts
+remote_theme: just-the-docs/just-the-docs
+color_scheme: dark
+logo: /assets/images/3m-banner.png
+search_enabled: true
+aux_links_new_tab: true
+footer_content: "© 3M Studio"
+plugins:
+  - jekyll-seo-tag
+
+# Optional but good for SEO / canonical URLs
+# Prilagodi ako ti je repo / domena drugačija
+url: "https://3mstudio.github.io"
+baseurl: "/3MStudioDocs"
+
+just_the_docs:
+  enable_copy_code_button: true   # copy gumb iznad code-blokova
+  # content_width: "980px"        # odkomentiraj ako želiš uži stupac
+
+# Header links (desno gore)
+aux_links:
+  "Tebex Store":
+    - "https://3m-studio.tebex.io/"
+  "YouTube":
+    - "https://www.youtube.com/@3MStudioFivem"
+
+stylesheets:
+  - /assets/css/custom.css
