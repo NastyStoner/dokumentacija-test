@@ -50,17 +50,17 @@
               {% endif %}
             </div>
 
-            <nav class="side-nav">
+                        <nav class="side-nav">
               <ul class="nav-list">
-                {% assign pages_sorted = site.pages | sort: 'nav_order' %}
-                {% for p in pages_sorted %}
-                  {% if p.nav_exclude != true and p.title %}
-                    <li class="nav-list-item{% if p.url == page.url %} active{% endif %}">
-                      <a class="nav-list-link{% if p.url == page.url %} current{% endif %}" href="{{ p.url | relative_url }}">
-                        {{ p.title }}
+                {% assign all_pages = site.pages | where_exp:'p','p.nav_exclude != true' %}
+                {% assign roots = all_pages | where_exp:'p','p.parent == nil' | sort:'nav_order' %}
+                {% for root in roots %}
+                  {% if root.title %}
+                    <li class="nav-list-item{% if root.url == page.url %} active{% endif %}">
+                      <a class="nav-list-link{% if root.url == page.url %} current{% endif %}" href="{{ root.url | relative_url }}">
+                        {{ root.title }}
                       </a>
-
-                      {% assign children = site.pages | where: 'parent', p.title | sort: 'nav_order' %}
+                      {% assign children = all_pages | where:'parent', root.title | sort:'nav_order' %}
                       {% if children.size > 0 %}
                         <ul class="nav-list">
                           {% for child in children %}
