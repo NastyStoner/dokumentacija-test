@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% seo %}
+    <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+  </head>
+  <body>
+    <div class="page-wrap">
+      <header class="site-header">
+        <div class="site-header-inner">
+          <div class="site-title">
+            <strong>{{ site.title }}</strong>
+          </div>
+          <nav class="site-nav">
+            <ul class="nav-list">
+              {% assign top_pages = site.pages | where_exp:'p','p.nav_order' | sort:'nav_order' %}
+              {% for p in top_pages %}
+                {% if p.nav_exclude != true and p.parent == nil and p.title %}
+                  <li>
+                    <a href="{{ p.url | relative_url }}" class="nav-link{% if p.url == page.url %} current{% endif %}">
+                      {{ p.title }}
+                    </a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <div class="page-body">
+        <aside class="side-bar">
+          <div class="side-bar-inner">
+            <div class="side-bar-logo">
+              {% if site.logo %}
+                <a href="{{ '/' | relative_url }}">
+                  <img src="{{ site.logo | relative_url }}" alt="{{ site.title }}">
+                </a>
+              {% endif %}
+            </div>
+
+            <div class="side-bar-search">
+              {% if site.search_enabled != false %}
+                <form action="{{ '/' | relative_url }}" method="get" role="search">
+                  <input class="search-input" type="search" name="q" placeholder="Search docs..." aria-label="Search docs">
+                </form>
+              {% endif %}
+            </div>
+
+            <nav class="side-nav">
+              <ul class="nav-list">
+                {% assign pages_sorted = site.pages | sort: 'nav_order' %}
+                {% for p in pages_sorted %}
+                  {% if p.nav_exclude != true and p.title %}
+                    <li class="nav-list-item{% if p.url == page.url %} active{% endif %}">
+                      <a class="nav-list-link{% if p.url == page.url %} current{% endif %}" href="{{ p.url | relative_url }}">
+                        {{ p.title }}
+                      </a>
+
+                      {% assign children = site.pages | where: 'parent', p.title | sort: 'nav_order' %}
+                      {% if children.size > 0 %}
+                        <ul class="nav-list">
+                          {% for child in children %}
+                            <li class="nav-list-item{% if child.url == page.url %} active{% endif %}">
+                              <a class="nav-list-link{% if child.url == page.url %} current{% endif %}" href="{{ child.url | relative_url }}">
+                                {{ child.title }}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </nav>
+          </div>
+        </aside>
+
+        <main class="main-content-wrap" role="main">
+          <article class="main-content">
+            {{ content }}
+          </article>
+
+          <footer class="site-footer">
+            <div class="footer-inner">
+              <small>{{ site.footer_content }}</small>
+            </div>
+          </footer>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

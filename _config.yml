@@ -1,0 +1,14 @@
+title: 3M Studio Docs
+description: Documentation for 3M Studio skripts
+logo: /assets/images/3m-banner.png
+search_enabled: true
+aux_links_new_tab: true
+footer_content: "© 3M Studio"
+plugins:
+  - jekyll-seo-tag
+
+# Custom build — no remote theme, we use our own layout + CSS only
+markdown: kramdown
+
+stylesheets:
+  - /assets/css/custom.css
