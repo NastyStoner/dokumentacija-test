@@ -1,1 +1,0 @@
-Place your 3M banner image here named '3m-banner.png' (PNG/JPG).
